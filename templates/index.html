@@ -1,0 +1,720 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>The Smart Banker</title>
+    <meta name="viewport" content="width = device-width, initial-scale=1, maximum-scale=1" >
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="{% static 'css/styles.css'%}">
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <script>
+        function myFunction() {
+            window.location.href = "instruction.html"
+        }
+    </script>
+    <!-- <style>
+        body {
+            font-family: "Montserrat";
+            text-align: center;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: "Montserrat-Bold";
+        }
+
+        /* p {
+  color: #8f8f8f;
+} */
+
+        /* Headings */
+
+        .big-heading {
+            font-family: "Montserrat-Black";
+            font-size: 3.5rem;
+            line-height: 1.5;
+        }
+
+        .section-heading {
+            font-size: 3rem;
+            line-height: 1.5;
+        }
+
+        /* Containers */
+
+        .container-fluid {
+            padding: 7% 15%;
+        }
+
+        .coloured-section {
+            color: #ffffff;
+        }
+
+
+        #footer {
+            background-color: #7badd2;
+            color: #fff;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        /* Navigation Bar */
+
+        .navbar {
+            padding: 0 0 4.5rem;
+        }
+
+        .navbar-brand {
+            font-family: "Ubuntu";
+            font-size: 2.8rem;
+            font-weight: bold;
+        }
+
+        .nav-item {
+            padding: 0 18px;
+        }
+
+        .nav-link {
+            font-size: 1.2rem;
+            font-family: "Montserrat-light";
+        }
+
+        /* Buttons */
+
+        .getStarted-button {
+            margin: 5% 3% 5% 0;
+            padding: 1.2rem;
+            border-radius: 6rem;
+            font-weight: 500;
+        }
+
+        /* Title Section */
+
+        #title {
+            background-color: #7badd2;
+            color: #fff;
+            text-align: left;
+        }
+
+        #title .container-fluid {
+            padding: 3% 15% 7%;
+        }
+
+        /* Title Image */
+
+        .title-image {
+            position: absolute;
+            left: 24%;
+            width: 70%;
+            /* width of container */
+            height: 100%;
+            /* height of container */
+            object-fit: cover;
+            border-radius: 6rem;
+        }
+
+        /* Features Section */
+
+        #features {
+            position: relative;
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+        }
+
+        .feature-box {
+            padding: 4.5%;
+        }
+
+        .icon {
+            color: #0072aa;
+            margin-bottom: 1rem;
+        }
+
+        .icon:hover {
+            color: #7badd2;
+            transform: scale(1.1);
+            transition: 0.5s;
+        }
+
+        /* Testimonial Section */
+
+        #testimonials {
+            background-color: #7badd2;
+            color: white;
+        }
+
+        .testimonial-div:hover {
+            transform: scale(1.05);
+            transition: 0.5s;
+        }
+
+        .testimonial-div {
+            transition: ease-in-out 0.3s;
+        }
+
+        .testimonial-text {
+            font-size: 3rem;
+            line-height: 1.5;
+        }
+
+
+
+        p.testimonial-text {
+            font-size: 1.6rem;
+            line-height: 1.5;
+            padding-top: 5%;
+            /* padding-bottom: 10%; */
+        }
+
+
+        #press {
+            background-color: #7badd2;
+            padding-bottom: 3%;
+        }
+
+        .press-logo {
+            width: 180px;
+            height: 120px;
+            margin: 20px 30px 80px;
+        }
+
+        .press-logo:hover {
+            transform: scale(1.05);
+            transition: 0.5s;
+        }
+
+
+        /* Team Section */
+
+        #team {
+            padding: 50px;
+        }
+
+        .container {
+            font-family: 'Montserrat-Black';
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+
+        .section-title h2 {
+            font-size: 3.5rem;
+            padding-bottom: 2%;
+        }
+
+        .section-title p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            padding-bottom: 1%;
+        }
+
+        .row {
+            font-family: "Montserrat";
+        }
+
+        .team .member {
+            position: relative;
+            box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            border-radius: 5px;
+            background: #fff;
+            transition: 1s;
+        }
+
+        .team .member .pic {
+            overflow: hidden;
+            width: 180px;
+            border-radius: 50%;
+        }
+
+        .team .member .pic img {
+            transition: ease-in-out 0.3s;
+        }
+
+        .team .member:hover {
+            transform: translateY(-10px);
+        }
+
+        .team .member .member-info {
+            padding-left: 30px;
+        }
+
+        .team .member h4 {
+            font-weight: 700;
+            margin-bottom: 5px;
+            font-size: 20px;
+            color: #0072aa;
+        }
+
+        .team .member span {
+            display: block;
+            font-size: 15px;
+            padding-bottom: 10px;
+            position: relative;
+            font-weight: 500;
+        }
+
+        .team .member span::after {
+            content: '';
+            position: absolute;
+            display: block;
+            width: 80px;
+            height: 1px;
+            background: #cbd6e9;
+            bottom: 0;
+            left: 0;
+        }
+
+        .team .member p {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        .team .member .social {
+            margin-top: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .team .member .social a {
+            transition: ease-in-out 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50px;
+            width: 32px;
+            height: 32px;
+            background: #eff2f8;
+        }
+
+        .team .member .social a i {
+            color: #7badd2;
+            font-size: 16px;
+            margin: 0 2px;
+        }
+
+        .team .member .social a:hover {
+            background: #0072aa;
+            color: #ffffff;
+        }
+
+        .team .member .social a:hover i {
+            color: #ffffff;
+        }
+
+        .team .member .social a+a {
+            margin-left: 8px;
+        }
+
+        /* Footer Section */
+
+
+        .social-icon {
+            margin: 20px 10px;
+        }
+
+        @media (max-width: 1028px) {
+
+            #title {
+                text-align: center;
+            }
+
+            .title-image {
+                position: static;
+                transform: rotate(0);
+            }
+        }
+    </style> -->
+</head>
+
+<body>
+
+    <section class="colored-section" id="title">
+
+        <div class="container-fluid">
+
+            <!-- Nav Bar -->
+
+            <nav class="navbar navbar-expand-lg navbar-dark">
+
+                <a class="navbar-brand" href="">The Smart Banker</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#team">Team</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="instruction.html" class="btn btn-outline-light btn-lg" href="input.html">Get Started</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+
+            <!-- Title -->
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <h1 class="big-heading">Quick Insights about your Bank before you work with it.</h1>
+                    <button type="button" class="btn btn-outline-light btn-lg getStarted-button"
+                        onclick="myFunction()"><i class="fas fa-university"></i> Get
+                        Started</button>
+                </div>
+
+                <div class="col-lg-6">
+                    <img class="title-image"
+                        src="https://cdn.dribbble.com/users/484138/screenshots/3351025/bankbuilddribbble.gif"
+                        alt="bank">
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+
+    <section class="white-section" id="features">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="feature-box col-lg-4">
+                    <i class="icon fas fa-check-circle fa-4x"></i>
+                    <h3 class="feature-title">Easy to use.</h3>
+                    <p>Simple and Convinient.</p>
+                </div>
+
+                <div class="feature-box col-lg-4">
+                    <i class="icon fas fa-lightbulb fa-4x"></i>
+                    <h3 class="feature-title">Understandable</h3>
+                    <p>Easy way to understand your bank.</p>
+                </div>
+
+                <div class="feature-box col-lg-4">
+                    <i class="icon fas fa-bullseye fa-4x"></i>
+                    <h3 class="feature-title">Accurate Results.</h3>
+                    <p>Use of Upto-date Dataset.</p>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+
+    <!-- Testimonials -->
+
+    <section class="colored-section" id="about">
+
+        <div id="testimonial-carousel" class="carousel slide" data-ride="true">
+            <div class="carousel-inner">
+                <div class="carousel-item active container-fluid">
+                    <div class="testimonial-div">
+                        <h2 class="testimonial-text">What is this?</h2>
+                        <p class="testimonial-text">We help you to know the status of your bank before you can invest in
+                            it. Safe Investment leads to a Safe Future. Remember <b>Not wasting money is the best way to
+                                save money</b>.</p>
+                    </div>
+                </div>
+                <div class="carousel-item container-fluid">
+                    <div class="testimonial-div">
+                        <h2 class="testimonial-text">Why is this?</h2>
+                        <p class="testimonial-text">Our main purpose is to save the people from being cheated by Banks
+                            and Co-Operative Sectors. This is because <b>Money is the guarantee for Fruitful Future.</b>
+                            We don't want you to lose your money by false investing and suffer in future</p>
+                    </div>
+                </div>
+                <div class="carousel-item container-fluid">
+                    <div class="testimonial-div">
+                        <h2 class="testimonial-text">Who can use this?</h2>
+                        <p class="testimonial-text">Anyone who want to invest their money in a beneficiary bank can use
+                            this. Surprisingly, any Bank or Co-Operative Society can use this to know their performance.
+                            Because <b>we want to grow by growing our banks</b>.</p>
+                    </div>
+                </div>
+            </div>
+            <a class="carousel-control-prev" href="#testimonial-carousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon"></span>
+            </a>
+            <a class="carousel-control-next" href="#testimonial-carousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon"></span>
+            </a>
+        </div>
+
+    </section>
+
+
+    <!-- Press -->
+
+    <section class="colored-section" id="press">
+        <img class="press-logo"
+            src="https://www.eqmagpro.com/wp-content/uploads/2020/03/SBI-TENDER-FOR-HIRING-OF-SOLAR-POWER-SYSTEMS-FOR-POWER-BACK-UP-TO-SBI-ATM%E2%80%99S-IN-DELHI-CIRCLE.jpg"
+            alt="sbi-logo">
+        <img class="press-logo" src="https://seekvectorlogo.net/wp-content/uploads/2018/12/hdfc-bank-vector-logo.png"
+            alt="hdfc-logo">
+        <img class="press-logo"
+            src="https://content3.jdmagicbox.com/comp/tumkur/m6/9999p8162.8162.110113110618.b4m6/catalogue/tgmc-bank-head-office-bh-road-tumkur-banks-p55blzy-250.jpg"
+            alt="tgmc-bank-logo">
+        <img class="press-logo" src="http://manapparai.live/wp-content/uploads/2021/01/axis-bank-big.jpg"
+            alt="axis-logo">
+
+    </section>
+
+
+    <!-- Team -->
+
+    <!-- <section id="team" class="team section-bg">
+
+        <div class="container">
+
+            <div class="section-title">
+                <h2 style="font-family: monospace ;">TEAM</h2>
+                <p style="font-family: sans-serif !important;">Teamwork is the ability to work together toward a common vision. The ability to direct individual
+                    accomplishments toward organizational objectives. It is the fuel that allows common people to attain
+                    uncommon results.</p>
+            </div>
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="{% static 'img/Bhaskar_Sir.jpg'%}" style="height: 100%;width: 88%;"
+                                class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>G Bhaskar</h4>
+                            <span>Assistant Professor</span>
+                            <p>Mentor and Head of the Project</p>
+                            <div class="social">
+                                <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                                <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                                <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                                <a href=""><i class="social-icon fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4 mt-lg-0">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="{% static 'img/Punith.jpg'%}" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>A S Punith</h4>
+                            <span>Student, SIT</span>
+                            <p>Python and Django Framework</p>
+                            <div class="social">
+                                <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                                <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                                <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                                <a href=""><i class="social icon fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="{% static 'img/Namana.jpg'%}" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>Namana J Jain</h4>
+                            <span>Student, SIT</span>
+                            <p>Front-End Developer</p>
+                            <div class="social">
+                                <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                                <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                                <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                                <a href=""><i class="social icon fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-6 mt-4">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="{% static 'img/Nagavishnu.jpg'%}" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>Nagavishnu H</h4>
+                            <span>Student, SIT</span>
+                            <p>ML and Data Scientist</p>
+                            <div class="social">
+                                <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                                <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                                <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                                <a href=""><i class="social-icon fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section> -->
+
+    <section id="team" class="team section-bg">
+
+        <div class="container">
+    
+          <div class="section-title">
+            <h2>Team</h2>
+            <p>Teamwork is the ability to work together toward a common vision. The ability to direct individual accomplishments toward organizational objectives. It is the fuel that allows common people to attain uncommon results.</p>
+          </div>
+    
+          <div class="row" style="margin-bottom: 10px;">
+    
+            <div class="col-lg-6 col-12">
+              <div class="member d-flex align-items-start">
+                <div class="row">
+                  <div class="col col-md-6">
+                    <div class="pic"><img src="{% static 'img/Bhaskar_Sir.jpg'%}" style="height: 100%;width: 88%;" class="img-fluid" alt=""></div>
+                  </div>
+                  <div class="col col-md-6">
+                    <div class="member-info">
+                      <h4>G Bhaskar</h4>
+                      <span>Assistant Professor</span>
+                      <p>Mentor and Head of the Project</p>
+                      <div class="social">
+                        <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                        <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                        <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                        <a href=""><i class="social-icon fab fa-linkedin"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6 col-12">
+              <div class="member d-flex align-items-start">
+                <div class="row">
+                  <div class="col col-md-6">
+                    <div class="pic"><img src="{% static 'img/Punith.jpg'%}" style="height: 100%;width: 88%;" class="img-fluid" alt=""></div>
+                  </div>
+                  <div class="col col-md-6">
+                    <div class="member-info">
+                      <h4>A S Punith</h4>
+                      <span>Student, SIT</span>
+                      <p>Python, Django Framework</p>
+                      <div class="social">
+                        <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                        <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                        <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                        <a href=""><i class="social-icon fab fa-linkedin"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-lg-6 col-12">
+              <div class="member d-flex align-items-start">
+                <div class="row">
+                  <div class="col col-md-6">
+                    <div class="pic"><img src="{% static 'img/Namana.jpg'%}" class="img-fluid" alt=""></div>
+                  </div>
+                  <div class="col col-md-6">
+                    <div class="member-info">
+                      <h4>Namana J Jain</h4>
+                      <span>Student, SIT</span>
+                      <p>Front-End Developer</p>
+                      <div class="social">
+                        <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                        <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                        <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                        <a href=""><i class="social icon fab fa-linkedin"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="col-lg-6 col-12">
+              <div class="member d-flex align-items-start">
+                <div class="row">
+                  <div class="col col-md-6">
+                    <div class="pic"><img src="{% static 'img/Nagavishnu.jpg'%}" class="img-fluid" alt=""></div>
+                  </div>
+                  <div class="col col-md-6">
+                    <div class="member-info">
+                      <h4>Nagavishnu H</h4>
+                      <span>Student, SIT</span>
+                      <p>ML and Data Scientist</p>
+                      <div class="social">
+                        <a href=""><i class="social-icon fab fa-facebook-f"></i></a>
+                        <a href=""><i class="social-icon fab fa-twitter"></i></a>
+                        <a href=""><i class="social-icon fab fa-instagram"></i></a>
+                        <a href=""><i class="social-icon fab fa-linkedin"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+          </div>
+    
+        </div>
+      </section>
+    <!-- Footer -->
+
+    <footer class="white-section" id="footer">
+        <!-- <div class="container-fluid"> -->
+        <i class="social-icon fab fa-facebook-f"></i>
+        <i class="social-icon fab fa-twitter"></i>
+        <i class="social-icon fab fa-instagram"></i>
+        <i class="social-icon fab fa-linkedin"></i>
+        <p>© Copyright 2021 Smart Banking</p>
+        <!-- </div> -->
+    </footer>
+</body>
+{% endblock %}

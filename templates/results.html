@@ -1,0 +1,398 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% load static %}
+<head>
+    <meta charset="utf-8">
+    <title>The Smart Banker</title>
+    <meta name="viewport" content="width = device-width, initial-scale=1, maximum-scale=1" >
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Ubuntu" rel="stylesheet">
+
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/results.css'%}">
+
+    <!-- Font Awesome -->
+    <script defer src="https://use.fontawesome.com/releases/v5.15.3/js/all.js"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <!-- Bootstrap Scripts -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+
+    <style>
+        /* Bar-Graph Representation */
+        .year{
+            padding: 10%;
+        }
+
+        .bar-graph .year {
+            -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+            -moz-animation: fade-in-text 2.2s 0.1s forwards;
+            animation: fade-in-text 2.2s 0.1s forwards;
+        }
+
+        .bar-graph {
+            display: flex;
+            justify-content: center;
+        }
+
+        .bar-graph-vertical {
+            margin-top: 80px;
+            max-width: 620px;
+        }
+
+        .bar-graph-vertical .bar-container {
+            float: left;
+            height: 150px;
+            margin-right: 8px;
+            position: relative;
+            text-align: center;
+            width: 50px;
+        }
+
+        .bar-graph-vertical .bar {
+            border-radius: 3px;
+            bottom: 50px;
+            position: absolute;
+            width: 50px;
+        }
+
+        .bar-graph-vertical .year {
+            bottom: 0;
+            left: 0;
+            margin: 0 auto;
+            position: absolute;
+            right: 0;
+            /* -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg); */
+        }
+
+        .bar-graph-two .bar::after {
+            -webkit-animation: fade-in-text 2.2s 0.1s forwards;
+            -moz-animation: fade-in-text 2.2s 0.1s forwards;
+            animation: fade-in-text 2.2s 0.1s forwards;
+            color: #fff;
+            content: attr(data-percentage);
+            font-weight: 700;
+            left: 3px;
+            margin: 0 auto;
+            position: absolute;
+            right: 0;
+            /* text-align: left;
+            top: 24px;
+            -webkit-transform: rotate(90deg);
+            -moz-transform: rotate(90deg);
+            -o-transform: rotate(90deg);
+            -ms-transform: rotate(90deg);
+            transform: rotate(90deg); */
+        }
+
+        .bar-graph-two .bar-one .bar {
+            background-color: #64b2d1;
+            -webkit-animation: show-bar-one-vertical 1.2s 0.1s forwards;
+            -moz-animation: show-bar-one-vertical 1.2s 0.1s forwards;
+            animation: show-bar-one-vertical 1.2s 0.1s forwards;
+        }
+
+        .bar-graph-two .bar-two .bar {
+            {% if profit < 0 %}
+            background-color: red;
+            {% else %}
+            background-color: #5292ac;
+            {% endif %}
+            -webkit-animation: show-bar-two-vertical 1.2s 0.2s forwards;
+            -moz-animation: show-bar-two-vertical 1.2s 0.2s forwards;
+            animation: show-bar-two-vertical 1.2s 0.2s forwards;
+        }
+
+        .bar-graph-two .bar-three .bar {
+            background-color: #407286;
+            -webkit-animation: show-bar-three-vertical 1.2s 0.3s forwards;
+            -moz-animation: show-bar-three-vertical 1.2s 0.3s forwards;
+            animation: show-bar-three-vertical 1.2s 0.3s forwards;
+        }
+
+        .bar-graph-two .bar-four .bar {
+            background-color: #2e515f;
+            -webkit-animation: show-bar-four-vertical 1.2s 0.4s forwards;
+            -moz-animation: show-bar-four-vertical 1.2s 0.4s forwards;
+            animation: show-bar-four-vertical 1.2s 0.4s forwards;
+        }
+
+        /* Bar Graph Vertical Animations */
+        @-webkit-keyframes show-bar-one-vertical {
+            0% {
+                height: 0;
+            }
+            {% if npa_bar <= 100 %}
+            100% {
+                height: {{npa_bar}}%;
+            }
+            {% elif npa_bar > 100 %}
+            100% {
+                height: 100%;
+            }
+            {% endif %}
+        }
+
+        @-webkit-keyframes show-bar-two-vertical {
+            0% {
+                height: 0;
+            }
+
+            {% if profit_bar <= 100 %}
+            100% {
+                height: {{ profit_bar }}%;
+            }
+            {% elif profit_bar > 100 %}
+            100% {
+                height: 100%;
+            }
+            {% endif %}
+        }
+
+        @-webkit-keyframes show-bar-three-vertical {
+            0% {
+                height: 0;
+            }
+
+            100% {
+                height: {{ class_bar }}%;
+            }
+        }
+
+
+        @-webkit-keyframes fade-in-text {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+
+    <section class="colored-section" id="title">
+
+        <div class="container-fluid">
+
+            <!-- Nav Bar -->
+
+            <nav class="navbar navbar-expand-lg navbar-dark">
+
+                <a class="navbar-brand" href="">The Smart Banker</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="contact.html">Contact</a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+        </div>
+
+    </section>
+
+
+    <!-- Features -->
+
+    <section class="white-section" id="features">
+
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <h1 style="font-family: 'Ubuntu'; margin-bottom: 50px;"> Performance:</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <section>
+                        <svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="200" height="200"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <circle class="circle-chart__background" stroke="#efefef" stroke-width="2" fill="none"
+                                cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                            {% if result == 0 %}
+                            <circle class="circle-chart__background" stroke="#ff0000" stroke-width="2" fill="none"
+                                cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                            <circle class="circle-chart__circle" stroke="#ffffff" stroke-width="2"
+                                stroke-dasharray="{% widthratio result 1 20 %},100" stroke-linecap="round" fill="none"
+                                cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                            {% endif %}
+                            {% if result == 1 %}
+                            <circle class="circle-chart__circle" stroke="#dd7520" stroke-width="2"
+                                stroke-dasharray="{% widthratio result 1 20 %},100" stroke-linecap="round" fill="none"
+                                cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                            {% elif result == 2 %}
+                            <circle class="circle-chart__circle" stroke="#eec925" stroke-width="2"
+                                stroke-dasharray="{% widthratio result 1 20 %},100" stroke-linecap="round" fill="none"
+                                cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                            {% elif result == 3 %}
+                            <circle class="circle-chart__circle" stroke="#d0ee25" stroke-width="2"
+                                stroke-dasharray="{% widthratio result 1 20 %},100" stroke-linecap="round" fill="none"
+                                cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                            {% elif result == 4 %}
+                            <circle class="circle-chart__circle" stroke="#b8ee25" stroke-width="2"
+                                stroke-dasharray="{% widthratio result 1 20 %},100" stroke-linecap="round" fill="none"
+                                cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                            {% elif result == 5 %}
+                            <circle class="circle-chart__circle" stroke="#86ee25" stroke-width="2"
+                                stroke-dasharray="{% widthratio result 1 20 %},100" stroke-linecap="round" fill="none"
+                                cx="16.91549431" cy="16.91549431" r="15.91549431" />
+                            {% endif %}
+                            <g class="circle-chart__info">
+                                <text class="circle-chart__percent" x="16.91549431" y="18" alignment-baseline="central"
+                                    text-anchor="middle" font-size="8">{% widthratio result 1 20 %}%</text>
+                            </g>
+                        </svg>
+                    </section>
+                </div>
+                <div class="col-lg-9"">
+                    {% if result == 0 %}
+                    <h1> Highly Risky..!!! <i class=" far fa-sad-tear "></i></h1>
+                    <p> The bank doesn't have an RBI License. It's too risk to proceed with this bank. We highly recommend not to choose this bank if you want 100% security for your money.</p>
+                    {% elif result == 1 %}
+                    <h1> Very Poor..!!! <i class=" far fa-frown"></i></h1>
+                    <p> The Bank performance is unfruitful. Think twice before proceeding with this bank.</p>
+                    {% elif result == 2 %}
+                    <h1> Poor..!!! <i class="far fa-frown-open"></i></h1>
+                    <p>The performance of the bank is quite low. We recommend not to proceed. </p>
+                    {% if divClass == 'd' %}
+                    <p> but if you really want to proceed, then you can buy a share if you wish.</p>
+                    {% elif divClass == 'p' %}
+                    <p> but if you really want to proceed, then you can keep deposits.</p>
+                    {% endif %}
+                    {% elif result == 3 %}
+                    <h1> Its Okay..!!! <i class="far fa-meh"></i> </h1>
+                    <p> The Bank is performing moderately. You can proceed with the Bank. </p>
+                    {% if divClass == 'd' %}
+                    <p> We recommend you to buy a share as you can get a dividend by the bank.</p>
+                    {% elif divClass == 'p' %}
+                    <p> You can keep deposits if the bank gives a good interest-rate.</p>
+                    {% elif divClass == 'dp' %}
+                    <p> You can keep deposits based on the fair interest-rate as well as buy share if you wish to.</p>
+                    {% endif %}
+                    {% elif result == 4 %}
+                    <h1> Good..!!! <i class="far fa-smile"></i></h1>
+                    <p> This Bank is good enough for proceeding with any type of activities. But always be careful
+                        before buying a share because the chances of getting dividend is not always predictable.</p>
+                    {% elif result == 5 %}
+                    <h1> Awesome..!!! <i class="far fa-laugh-beam"></i></h1>
+                    <p> The performance of the Bank is 100% indicating that you can trust this bank in all respects.</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <hr style="border: 10px solid #7badd2;width: 100%;margin: 50px 0px;">
+            <div class="row">
+                <div class="col-lg-3">
+                    <h1 style="font-family: 'Ubuntu';"> Analysis:</h1>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <section class="bar-graph bar-graph-vertical bar-graph-two">
+                        <div class="bar-one bar-container">
+                            <div class="bar" data-percentage="{{ npa }}%"></div>
+                            <span class="year"> NPA</span>
+                        </div>
+                        <div class="bar-two bar-container">
+                            <div class="bar" data-percentage="{{ profit }}%"></div>
+                            <span class="year"> Profit</span>
+                        </div>
+                        <div class="bar-three bar-container">
+                            <div class="bar" data-percentage="{{ class }}"></div>
+                            <span class="year"> Class</span>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-9" style="padding-top: 10px;text-align: left;">
+                    <h4> The performance of the bank can be analysed as:-</h4>
+                    <ol>
+                        <li>The NPA percentage is found to be {{ npa }}%. Note that NPA percentage should be less for an ideal company.</li>
+                        <li>The Profit percentage is found to be {{profit}}%.</li>
+                        {% if profit <= 0 %}
+                        <ul> Note that the profit is in negative number. Hence it is adviced not to work with this bank. </ul>
+                        {% endif %}
+                        <li>The bank according to our analysis on NPA belong to the class '{{ class }}' </li>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <ul>
+                                    <li>Class 1: Highly Secured & Trustable Bank</li>
+                                    <li>Class 2: Trustable Bank</li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-6">
+                                <ul>
+                                    <li>Class 3: Average Trustable Bank</li>
+                                    <li>Class 4: Not valid for trust.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </ol>
+                </div>
+            </div>
+
+            <hr style="border: 10px solid #7badd2;width: 100%;margin: 50px 0px;">
+            <div class="row">
+                <div class="col-lg-12" style="text-align: justify;">
+                    <h4>So this was our valid analysis of <b> " {{ bname }} " </b>. Hope we did our best to know about your 
+                        bank and provide knowledge about certain parameters before proceeding with any bank. 
+                        We value your support with us. Please write to us your valuable feedback.
+                    </h4>
+                </div>
+                <div class="col-lg-12">
+                    <button class="btn btn-dark btn-lg" onclick="window.location.href='contact.html'" >Feedback</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+
+    <footer class="white-section" id="footer">
+        <!-- <div class="container-fluid"> -->
+        <i class="social-icon fab fa-facebook-f"></i>
+        <i class="social-icon fab fa-twitter"></i>
+        <i class="social-icon fab fa-instagram"></i>
+        <i class="social-icon fab fa-linkedin"></i>
+        <p>© Copyright 2021 Smart Banking</p>
+        <!-- </div> -->
+    </footer>
+</body>
+
+{% endblock %}
